@@ -1,0 +1,21 @@
+# this file store sensetive info
+.env
+# It's reproducible using requirements.txt
+venv/
+# Python cache, So it’s about cleanliness and efficiency, not security.
+__pycache__/  
+*.py[cod]
+
+
+
+
+# Ignore temporary notebook outputs (optional if auto-generated)
+*.nbconvert.ipynb
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb
+
+
+# Ignore OS/editor junk
+.DS_Store
+.vscode/
