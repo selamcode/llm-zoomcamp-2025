@@ -1,8 +1,9 @@
-# Docker
+# Docker 
+##### Before going to docker it's important to understand Virtual Machine.
 
-# 🌐 **What is a Virtual Machine (VM)?**
+## 🌐 **What is a Virtual Machine (VM)?**
 
-## 🚩 **`Why Do We Even Need a Virtual Machine`?**
+### 🚩 **`Why Do We Even Need a Virtual Machine`?**
 
 Imagine you only have **one computer**, but you want to:
 
@@ -14,7 +15,7 @@ Normally, you'd need **multiple computers**. That’s expensive, slow, and unrea
 
 💡 **Virtual Machines** solve this. They let you run **many computers inside one computer** — like magic.
 
-## 🧠 **`What is a Virtual Machine, Really`?**
+### 🧠 **`What is a Virtual Machine, Really`?**
 
 A `Virtual Machine` (VM) is a computer inside your computer.
 
@@ -34,7 +35,7 @@ You're basically **pretending to have a whole new computer** — without buying 
 
 Now you’re using two computers at once. 🎉
 
-## 🔧 **`How Do Virtual Machines Work?`**
+#### 🔧 **`How Do Virtual Machines Work?`**
 
 To run a virtual machine, you need:
 
@@ -257,19 +258,3 @@ commands inside them.
 taking application source code, building it into a container image, and running it as a
 container.
 
-### **`The Ops Perspective`** 
-
-- Check Docker is working
-- Download an image
-- Start a container from the image
-- Execute a command inside the container
-- Delete the container
-
-**`Check Docker is working`**
-    
-A typical Docker installation installs the client and the engine on the same machine and
-configures them to talk to each other.
-
-![](images/docker4.png)
-
-- **`Download an Image`**
