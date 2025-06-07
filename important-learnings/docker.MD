@@ -39,9 +39,12 @@ Now you’re using two computers at once. 🎉
 To run a virtual machine, you need:
 
 1. **`A physical computer`** (the real one you own) → this is called the **host**.
-2. **`Virtualization software`** → this is a special app that helps you create and run VMs.
+2. **`Virtualization software (Hypervisor)`**  → this is a special app that helps you create and run VMs.
     - Examples: **VirtualBox**, **VMware**, **Parallels**.
 3. **`An ISO file`** of the `OS` you want to install → like Ubuntu’s installer.
+
+#
+![virtual machines](images/vm1.png)
 
 ### Here's what happens:
 
@@ -180,7 +183,11 @@ Kubernetes is the industry standard platform for deploying and managing containe
 
 **`Terminology:`** `A containerized app is an application running as a container.`
 
-# **`Docker`** :docker-1:
+
+
+
+
+# **`Docker`** <img src="images/docker5.svg" alt="Movie Poster" width="70"/>
 
 ### 🐳 `What is Docker?`
 
@@ -199,7 +206,7 @@ Kubernetes is the industry standard platform for deploying and managing containe
 - This is the **actual machine behind the scenes** doing the work.
 - It’s like the **robot that listens to your remote control (CLI)** and makes things happen.
 
-![Screenshot 2025-05-23 at 7.22.59 PM.png](attachment:bf0b95ba-2878-4ef7-8944-c96b51aacc72:Screenshot_2025-05-23_at_7.22.59_PM.png)
+![](images/docker1.png)
 
 ### 🧙‍♂️ `What is a **Daemon**?`
 
@@ -223,7 +230,7 @@ A **`daemon`** (pronounced *DEE-muhn*) is just a **background program** that run
     - Volumes (data storage)
     
 
-![Screenshot 2025-05-23 at 7.23.42 PM.png](attachment:9a5e55e8-fa82-422a-9c57-06595ffeeed4:Screenshot_2025-05-23_at_7.23.42_PM.png)
+![](images/docker2.png)
 
 # The Big Idea of Docker in Summary:
 
@@ -232,7 +239,11 @@ A **`daemon`** (pronounced *DEE-muhn*) is just a **background program** that run
 - Your containers run **inside this VM**, not directly on your main OS.
 - On **Linux**, Docker runs directly without a VM, since it already has the right kernel.
 
-![VM and docker.png](attachment:a0eac023-f37c-4040-a1d9-01246d7ccbcf:VM_and_docker.png)
+
+#
+![](images/docker3.png)
+#
+
 
 ## **`The Big Picture`**
 
@@ -246,7 +257,7 @@ commands inside them.
 taking application source code, building it into a container image, and running it as a
 container.
 
-### **`The Ops Perspective`**
+### **`The Ops Perspective`** 
 
 - Check Docker is working
 - Download an image
@@ -254,12 +265,11 @@ container.
 - Execute a command inside the container
 - Delete the container
 
-- **`Check Docker is working`**
+**`Check Docker is working`**
     
-    A typical Docker installation installs the client and the engine on the same machine and
-    configures them to talk to each other.
-    
+A typical Docker installation installs the client and the engine on the same machine and
+configures them to talk to each other.
 
-![Screenshot 2025-05-24 at 5.42.20 PM.png](attachment:4ba5ce1c-88d8-44f4-b7af-d6354cf86a14:Screenshot_2025-05-24_at_5.42.20_PM.png)
+![](images/docker4.png)
 
 - **`Download an Image`**
