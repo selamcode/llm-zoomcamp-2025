@@ -1,17 +1,19 @@
-import openai
+import openai # if we don't use OpenAI
 from  dotenv import load_dotenv
-import os # using for system
+import os # if we don't use OpenAI
+
+from openai import OpenAI
 
 '''
 we need this to help us load the .env file
 pip install python-dotenv 
 
 '''
-# with out the openAI() function
-'''
 # Load variables from .env
 load_dotenv()
 
+# with out the openAI() function
+'''
 # Get the key
 api_key = os.getenv("OPENAI_API_KEY")
 
@@ -20,7 +22,6 @@ openai.api_key = api_key
 
 '''
 
-from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(

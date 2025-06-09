@@ -1,7 +1,7 @@
 # this file store sensetive info
 .env
 # It's reproducible using requirements.txt
-venv/
+.venv
 # Python cache, So it’s about cleanliness and efficiency, not security.
 __pycache__/  
 *.py[cod]

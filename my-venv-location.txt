@@ -1,0 +1,2 @@
+conda interpreer 
+/Users/user-name/opt/anaconda3
