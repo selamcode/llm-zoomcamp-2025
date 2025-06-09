@@ -4,6 +4,8 @@ Notes are from the official docker documentation and other source
 
 > containers are isolated processes for each of your app's components. Each component - **the frontend React app, the Python API engine, and the database** runs in its own isolated environment, completely isolated from everything else on your machine. 
 
+---
+
 ### Docker <img src="images/docker5.svg" width="60"/>
 
 Docker is an open platform for developing, shipping, and running applications. Docker enables you to separate your applications from your infrastructure so you can deliver software quickly.
@@ -18,9 +20,15 @@ Containers (Docker) are:
 - **Portable**. Containers can run anywhere! The container that runs on your development machine will work the same way in a data center or anywhere in the cloud!
 </br>
 
+---
 ### Image
 
+
+</br>
+
 > A container image is a standardized package that includes all of the files, binaries, libraries, and configurations to run a container.
+
+</br>
 
 ##### There are two important principles of images:
 
@@ -28,6 +36,7 @@ Containers (Docker) are:
 
 2. Container images are composed of layers. Each layer represents a set of file system changes that add, remove, or modify files.
 
+</br>
 These two principles let you to extend or add to existing images. For example, if you are building a Python app, you can start from the [Python image](https://hub.docker.com/_/python)  and add additional layers to install your app's dependencies and add your code. This lets you focus on your app, rather than Python itself.
 
 ### More On Docker Images and Layers 
@@ -41,7 +50,9 @@ Docker images are built in layers, so when you want to update an image (say from
 - Save this combined result as a new image, which you can tag as v2.
 
 </br>
+
 This way, v2 contains all of v1’s layers plus the new changes, without duplicating everything. It’s efficient, and you can always roll back or use different versions easily.
+
 </br>
 
 > Updating images is about building new layers on top of existing ones and tagging them as new versions.
@@ -51,8 +62,12 @@ This way, v2 contains all of v1’s layers plus the new changes, without duplica
 ##### Finding images
 [Docker Hub](https://hub.docker.com/)  is the default global marketplace for storing and distributing images. 
 
+</br>
 
+---
 ### Registry
+
+
 
 Now that you know what a container image is and how it works, you might wonder - where do you store these images?
 
@@ -67,6 +82,7 @@ A registry is a centralized location that stores and manages container images, w
 
 ![Registry vs.Repository](images/Registry%20vs.Repository.png)
 
+---
 ### Docker Compose
 
 So far, you’ve worked with single-container apps. But real-world apps often need multiple services—like databases, caches, or message queues.
@@ -99,12 +115,14 @@ A **Dockerfile** is used to define how to build a single Docker image, specifyin
 
 > Docker Compose = how to run and connect multiple services as a complete system.
 
+---
+
 ### Dockerfile
 
 A Dockerfile is a text-based document that's used to create a container image. It provides instructions to the image builder on the commands to run, files to copy, startup command, and more.
 
 ##### As an example, the following Dockerfile would produce a ready-to-run Python application:
-``` python
+``` docker
 
 FROM python:3.12
 WORKDIR /usr/local/app
