@@ -444,6 +444,7 @@ textdistance @ file:///tmp/build/80754af9/textdistance_1612461398012/work
 threadpoolctl==3.6.0
 three-merge @ file:///tmp/build/80754af9/three-merge_1607553261110/work
 tifffile @ file:///tmp/build/80754af9/tifffile_1627275862826/work
+tiktoken==0.9.0
 time-machine==2.15.0
 tinycss @ file:///tmp/build/80754af9/tinycss_1617713798712/work
 tinycss2==1.4.0
