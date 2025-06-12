@@ -473,14 +473,34 @@ rag(query)
 4. Returns the final answer.
 
 
-### Answers to the Questions
+---
+
+### Summary: High-Level RAG Pipeline
+
+``` text
+1. Load Documents
+   ↓
+2. Index into Elasticsearch
+   ↓
+3. User asks a question
+   ↓
+4. Search relevant answers from Elasticsearch
+   ↓
+5. Build a prompt using the search results
+   ↓
+6. Send the prompt to OpenAI (LLM)
+   ↓
+7. Return the final answer to the user
+```
+
+---
+
+#### Answers to the hw questions
 
 ##### answer 1
 
 ```docker
-
 docker run -it --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:8.17.6
-
 ```
 ##### answer 2
 

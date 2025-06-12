@@ -11,5 +11,3 @@
     docker pull <image>:<tag> 
     # Example: docker pull python:3.10  
     ```
-
-
