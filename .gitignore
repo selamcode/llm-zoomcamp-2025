@@ -12,8 +12,8 @@ __pycache__/
 # Ignore temporary notebook outputs (optional if auto-generated)
 *.nbconvert.ipynb
 # Ignore Jupyter notebook checkpoints
-.ipynb_checkpoints/
-*.ipynb
+.ipynb_checkpoints
+
 
 
 # Ignore OS/editor junk
