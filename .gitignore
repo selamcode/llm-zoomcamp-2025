@@ -19,3 +19,6 @@ __pycache__/
 # Ignore OS/editor junk
 .DS_Store
 .vscode/
+
+# ignore qdrant storage
+qdrant_storage/
