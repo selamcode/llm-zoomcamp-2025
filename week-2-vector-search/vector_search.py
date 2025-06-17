@@ -1,6 +1,7 @@
 import requests
 import json
 import random
+from qdrant_client.http.exceptions import UnexpectedResponse # when creating collections, I need to skip if already created
 from qdrant_client import QdrantClient, models
 
 # choose a model
@@ -9,13 +10,11 @@ from fastembed import TextEmbedding
  #connecting to local Qdrant instance
 client = QdrantClient("http://localhost:6333")
 
-
-
+# get the document we will work on 
 docs_url = 'https://github.com/alexeygrigorev/llm-rag-workshop/raw/main/notebooks/documents.json'
 docs_response = requests.get(docs_url)
 documents_raw = docs_response.json()
 # print(documents_raw)
-
 
 
 ''' lets pick out text model '''
@@ -40,10 +39,8 @@ model_handle = "jinaai/jina-embeddings-v2-small-en"
 collection_name = "zoomcamp-rag"
 
 # Create the collection with specified vector parameters
-from qdrant_client.http.exceptions import UnexpectedResponse
-
-'''
 try: 
+    # creating if the collection donesn't exist
     client.create_collection(
         collection_name=collection_name,
         vectors_config=models.VectorParams(
@@ -58,7 +55,6 @@ except UnexpectedResponse as e:
         raise e
     
 
-'''
 
 
     
@@ -82,12 +78,13 @@ for course in documents_raw:
                 "course": course['course']
             } #save all needed metadata fields
         )
+        # we are adding "point" which contains payload and the vectorized array (the embedded object)
         points.append(point)
 
         id += 1
         
         
-''' Then, the generated points will be upserted into the collection, and the vector index will be built.'''
+''' Then, the generated points will be upserted (inserted) into the collection, and the vector index will be built.'''
 
 client.upsert(
     collection_name=collection_name,
@@ -121,7 +118,8 @@ print(json.dumps(course_piece, indent=2))
 
 result = search(course_piece['question'])
 
-print(result + "\n")
+print(result)
+print("\n")
 
 print(f"Question:\n{course_piece['question']}\n")
 print("Top Retrieved Answer:\n{}\n".format(result.points[0].payload['text']))
@@ -163,5 +161,5 @@ def search_in_course(query, course="mlops-zoomcamp", limit=1):
 
     return results
 
-
+print("\n Answer with filter search")
 print(search_in_course("What if I submit homeworks late?", "mlops-zoomcamp").points[0].payload['text'])
