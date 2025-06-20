@@ -191,3 +191,94 @@ So final ranked result:
 `This is fast and accurate`:
 
 - Keyword filters, then AI(semantic search) ranks what matters most.
+
+
+<br>
+
+-----
+
+### Why Hybrid Search?
+
+##### Search queries vary:
+
+- Some users write keywords (e.g., "Nike shoes size 10") → sparse (BM25) works great.
+
+- Others write natural language (e.g., "what are the best shoes for running?") → dense embeddings shine.
+
+Hybrid search combines both, giving you the best of both worlds.
+
+<br>
+
+### Fusion vs. Reranking
+
+| Term          | Meaning                                                                                                                                      |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Reranking** | Take one method (e.g., dense) to fetch top candidates, and then rerank using another (e.g., BM25 or an LLM).                                 |
+| **Fusion**    | Combine **results from multiple methods** (e.g., BM25 + embeddings), **without favoring one** — and merge them into one unified ranked list. |
+
+<br>
+
+### What Is Reciprocal Rank Fusion (RRF)?
+
+> RRF combines multiple ranked lists by looking at how highly ranked a document is in each list — regardless of the raw scores.
+
+
+| Document | Dense Ranking | Sparse Ranking | RRF Score | Final Ranking |
+| -------- | ------------- | -------------- | --------- | ------------- |
+| D1       | 1             | 5              | 0.0318    | 2             |
+| D2       | 2             | 4              | 0.0317    | 3             |
+| D3       | 3             | 2              | 0.0320    | 1             |
+| D4       | 4             | 3              | 0.0315    | 5             |
+| D5       | 5             | 1              | 0.0318    | 2             |
+
+<br>
+
+##### What does this mean?
+- If a document is ranked high in both BM25 and dense search → it will appear high in the final result.
+
+- Even if it’s not top-1 in either method, it could still win because it’s consistently good.
+
+<br>
+
+``` python
+
+def rrf_search(query: str, limit: int = 1) -> list[models.ScoredPoint]:
+    results = client.query_points(
+        collection_name="zoomcamp-sparse-and-dense",
+        prefetch=[
+            models.Prefetch(
+                query=models.Document(
+                    text=query,
+                    model="jinaai/jina-embeddings-v2-small-en",
+                ),
+                using="jina-small",
+                limit=(5 * limit),
+            ),
+            models.Prefetch(
+                query=models.Document(
+                    text=query,
+                    model="Qdrant/bm25",
+                ),
+                using="bm25",
+                limit=(5 * limit),
+            ),
+        ],
+        # Fusion query enables fusion on the prefetched results
+        query=models.FusionQuery(fusion=models.Fusion.RRF),
+        with_payload=True,
+    )
+
+    return results.points
+
+```
+
+<br>
+
+| Feature                | Purpose                                         |
+| ---------------------- | ----------------------------------------------- |
+| `prefetch`             | Runs dense & sparse search independently        |
+| `FusionQuery(RRF)`     | Merges those two result sets by rank, not score |
+| `limit`                | Final number of top fused results you want      |
+| `models.Document(...)` | Defines query format (text + model used)        |
+
+
