@@ -90,6 +90,7 @@ documents = [{'text': "Yes, even if you don't register, you're still eligible to
   'question': 'How can we contribute to the course?',
   'course': 'data-engineering-zoomcamp'}]
 
+'''
 # Collect just the texts
 docs = []
 for dics in documents:
@@ -103,22 +104,59 @@ model = TextEmbedding(model_name='jinaai/jina-embeddings-v2-small-en')
 docs_embedding = list(model.embed(docs))
 
 # Embed a sample query
-q = list(model.embed(["Can I still join the course?"]))[0]
+#q = list(model.embed(["Can I still join the course?"]))[0]
+
+# Compare each document's vector to the query vector
+for i in range(len(docs_embedding)):
+    print("Text", i, "cosine similarity with query vector is ->", docs_embedding[i].dot(q), "\n")
+'''
+'''
+    Text 0 cosine similarity with query vector is -> 0.7629684518721929 
+
+    Text 1 cosine similarity with query vector is -> 0.8182378156620136 
+
+    Text 2 cosine similarity with query vector is -> 0.8085397445747489 
+
+    Text 3 cosine similarity with query vector is -> 0.7133078832064158 
+
+    Text 4 cosine similarity with query vector is -> 0.7304499196411822 
+'''
+
+
+
+docs = []
+for dics in documents:
+    current_text = dics['question'] + ' ' + dics['text']
+    docs.append(current_text)
+    
+# print(docs)
+
+
+
+# Create the embedding model
+model = TextEmbedding(model_name='jinaai/jina-embeddings-v2-small-en')
+
+# Embed the documents
+docs_embedding = list(model.embed(docs))
+
+# Embed a sample query
+#q = list(model.embed(["Can I still join the course?"]))[0]
 
 # Compare each document's vector to the query vector
 for i in range(len(docs_embedding)):
     print("Text", i, "cosine similarity with query vector is ->", docs_embedding[i].dot(q), "\n")
 
 '''
-Text 0 cosine similarity with query vector is -> 0.8031463107621946 
 
-Text 1 cosine similarity with query vector is -> 0.8530053886468046 
+Text 0 cosine similarity with query vector is -> 0.851454319443226 
 
-Text 2 cosine similarity with query vector is -> 0.7871920751064605 
+Text 1 cosine similarity with query vector is -> 0.8436594005975434 
 
-Text 3 cosine similarity with query vector is -> 0.6791068036531438 
+Text 2 cosine similarity with query vector is -> 0.8408287224005013 
 
-Text 4 cosine similarity with query vector is -> 0.6916405295477648 
+Text 3 cosine similarity with query vector is -> 0.7755157657626951 
+
+Text 4 cosine similarity with query vector is -> 0.8086007917931164 
 
 '''
 
