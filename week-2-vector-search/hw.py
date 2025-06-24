@@ -1,4 +1,5 @@
 from fastembed import TextEmbedding
+import requests 
 
 import numpy as np
 
@@ -148,4 +149,15 @@ Text 4 cosine similarity with query vector is -> 0.8086007917931164
 
 '''
 
+
+
+models = TextEmbedding.list_supported_models()  # List of dicts
+
+# Extract all embedding dimensions
+dims = [model['dim'] for model in models]
+
+# Find the minimum dimension
+min_dim = min(dims)
+
+print("Question-5-Answer\n",min_dim,"\n")
 

@@ -22,3 +22,6 @@ __pycache__/
 
 # ignore qdrant storage
 qdrant_storage/
+
+# scratch python file
+q6.py
