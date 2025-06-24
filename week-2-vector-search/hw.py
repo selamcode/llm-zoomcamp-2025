@@ -90,26 +90,28 @@ documents = [{'text': "Yes, even if you don't register, you're still eligible to
   'question': 'How can we contribute to the course?',
   'course': 'data-engineering-zoomcamp'}]
 
-'''
-# Collect just the texts
+
+# Compare each document's vector to the query vector
+def cosign_similarity(embeding_array:list):
+    for i in range(len(embeding_array)):
+        print("Text", i, "cosine similarity with query vector is ->", embeding_array[i].dot(q), "\n")
+
+def embed(docs:list)->list:
+    # Create the embedding model
+    model = TextEmbedding(model_name='jinaai/jina-embeddings-v2-small-en')
+    # Embed the documents
+    docs_embedding = list(model.embed(docs))
+    
+    return docs_embedding
+
+print("\nQuery vs Text\n")
 docs = []
 for dics in documents:
     current_text = dics.get("text")
     docs.append(current_text)
 
-# Create the embedding model
-model = TextEmbedding(model_name='jinaai/jina-embeddings-v2-small-en')
+cosign_similarity(embed(docs))
 
-# Embed the documents
-docs_embedding = list(model.embed(docs))
-
-# Embed a sample query
-#q = list(model.embed(["Can I still join the course?"]))[0]
-
-# Compare each document's vector to the query vector
-for i in range(len(docs_embedding)):
-    print("Text", i, "cosine similarity with query vector is ->", docs_embedding[i].dot(q), "\n")
-'''
 '''
     Text 0 cosine similarity with query vector is -> 0.7629684518721929 
 
@@ -122,30 +124,16 @@ for i in range(len(docs_embedding)):
     Text 4 cosine similarity with query vector is -> 0.7304499196411822 
 '''
 
-
-
+print("\nQuery vs Question + Text \n")
 docs = []
 for dics in documents:
     current_text = dics['question'] + ' ' + dics['text']
     docs.append(current_text)
     
-# print(docs)
+cosign_similarity(embed(docs))    
 
 
-
-# Create the embedding model
-model = TextEmbedding(model_name='jinaai/jina-embeddings-v2-small-en')
-
-# Embed the documents
-docs_embedding = list(model.embed(docs))
-
-# Embed a sample query
-#q = list(model.embed(["Can I still join the course?"]))[0]
-
-# Compare each document's vector to the query vector
-for i in range(len(docs_embedding)):
-    print("Text", i, "cosine similarity with query vector is ->", docs_embedding[i].dot(q), "\n")
-
+# Answer 4
 '''
 
 Text 0 cosine similarity with query vector is -> 0.851454319443226 
