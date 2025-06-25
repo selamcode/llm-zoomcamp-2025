@@ -68,7 +68,9 @@ normalization = np.linalg.norm(d)
 
 print(d.dot(q),"\n")
 
-
+query = "I just discovered the course. Can I join now?"
+model = TextEmbedding(model_name='jinaai/jina-embeddings-v2-small-en')
+q = list(model.embed([query]))[0]
 
 documents = [{'text': "Yes, even if you don't register, you're still eligible to submit the homeworks.\nBe aware, however, that there will be deadlines for turning in the final projects. So don't leave everything for the last minute.",
   'section': 'General course-related questions',
@@ -161,3 +163,97 @@ min_dim = min(dims)
 
 print("Question-5-Answer\n",min_dim,"\n")
 
+
+
+
+'''The code below is for question 6'''
+
+
+from fastembed import TextEmbedding
+from qdrant_client import QdrantClient, models
+import requests
+
+# Step 1: Load the documents
+docs_url = 'https://github.com/alexeygrigorev/llm-rag-workshop/raw/main/notebooks/documents.json'
+docs_response = requests.get(docs_url)
+documents_raw = docs_response.json()
+
+# Step 2: Filter only 'machine-learning-zoomcamp' course
+documents = []
+for course in documents_raw:
+    if course['course'] != 'machine-learning-zoomcamp':
+        continue
+    for doc in course['documents']:
+        doc['course'] = course['course']
+        documents.append(doc)
+
+# Step 3: Prepare text by combining question and text fields
+docs = []
+for d in documents:
+    combined_text = d['question'] + ' ' + d['text']
+    docs.append(combined_text)
+
+# Step 4: Create the embedding model and embed documents
+model = TextEmbedding(model_name='BAAI/bge-small-en')
+vectors = list(model.embed(docs))  # This will produce 384-dim vectors
+
+# Step 5: Create the collection in Qdrant
+
+collection_name = "hw2_q6"
+client = QdrantClient("http://localhost:6333")
+points = []
+
+if not client.collection_exists(collection_name):
+    client.create_collection(
+        collection_name=collection_name,
+        vectors_config=models.VectorParams(
+            size=384,
+            distance=models.Distance.COSINE,
+        )
+    )
+
+    # Step 6: Prepare Qdrant points (ID, vector, and payload)
+    
+    for i in range(len(docs)):
+        point = models.PointStruct(
+            id=i,
+            vector=vectors[i],
+            payload={
+                "text": docs[i],
+                "course": documents[i]["course"],
+                "section": documents[i]["section"],
+                "question": documents[i]["question"]
+            }
+        )
+        points.append(point)
+
+    # Step 7: Upsert (insert/update) into Qdrant
+    client.upsert(
+        collection_name=collection_name,
+        points=points
+    )
+
+# search
+
+def search(query):
+    
+    # Step 1: Embed the query locally
+    query_vector = list(model.embed([query]))[0]
+
+    # Step 2: Search in Qdrant
+    results = client.search(
+        collection_name=collection_name,
+        query_vector=query_vector,
+        with_payload=True
+    )
+
+    return results
+
+#print(type(search("can i join this course", 1)))
+
+print("\n")
+result = search('I just discovered the course. Can I join now?')
+top_result = result[0]
+
+print("\nQuestion-6-Answer\n")
+print("The highest score in the results is:\n", top_result.score)
