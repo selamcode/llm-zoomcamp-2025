@@ -40,10 +40,14 @@ main idead of `RAG`:
 
 ![Alt text](images/cognee-1.png) 
 
+
 `Parse Data -> Build Data Knowledge Graph -> Enrich with Metadata -> Save to Cognee Memory`
 
+
 Knowledge Graph 
+
 ![Alt text](images/knowledge-graph.png) 
+
 
 
 ### Challenges of `RAG` system
@@ -58,6 +62,45 @@ Knowledge Graph
 - Graph-based retreval uses a semantic graph to identify and connect relevant facts, improving precision and contextual relavance.
 
 ##### Challenge 2
+
+`Ranking & Consolidation`
+
+- Retrived chunks are not always ranked by usefulness, leading to suboptimal generation.
+
+`Cognee's Solution`
+ 
+Graph traversal: The graph structure helps prioritize and consolidate the most relavant information for the query 
+
+##### Challenge 3
+
+`Pipeline Scalability and Data Ingestion`
+- Scaling ingestion and retrival pipelines for a large datasets is complex and resource-intensive.
+
+`Cognee's Solution`
+
+`LanceDB` and `dlt` integration:
+
+Simplifies local, scalable vector storage and reduces the complexity and reduces complexity in ETL and metadata managment.
+
+
+#### What are cognee node sets
+
+1. They are lists of tags(strings) attached to content in cognee's knowledge organizing, filtering, and categorizing data.
+
+2. advantages:
+
+    a. `Topic Isolation`: Agents can write/rerieve data by topic, keeping domains separate.
+
+    b. `Better Organization`: Maintains Structure as your knowledge base grows.
+
+    c. `Improve Retrival`: Enables precise, tag-based filtering for searches.
+
+    d. `Topic-based Analysis`: Makes it easy to ananlyze patterns within specific domains.
+
+    e. `Scalabale Knowledge Management`: 
+    Reduces complexity as content increases.
+    
+    f. Node sets are supported with Kuzu and Neo4j graph databases.
 
 
 
