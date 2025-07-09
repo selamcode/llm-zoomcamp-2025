@@ -144,3 +144,7 @@ Then you do not need dlt. You're not missing out on anything essential.
 - Modular plug-ins to Postgres, BigQuery, etc.
 
 Then `dlt` might be a smart thing to layer in later, not now.
+
+Next monitoring:
+
+we need to monitor the users interaction and how the results they are getting are relevant or not. we can use the same evaluation metrics to follow how things are working and adjust based on the feedback we get from the moniorring 
