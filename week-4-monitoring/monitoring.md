@@ -27,17 +27,43 @@ Is checking the answers we get from our llm is good enough.
 
 other things we should monitor (cost of used infrasructure, errors, latency, traffic)
 
+---
 
-### summary
+# summary
 
-1. `rag retrival -> evaluation -> week 3 evaluation`
+#### Evaluation for retrival
 
-- Recall
-- mrr
-- hitrate
+- `Recall`
+- `mrr`
+- `hitrate`
 
-2. `llm evaluation -> monitoring`
+#### evaluation in general can be done in 2 ways for the whole RAG system.
 
-- using evaluation metrics and llm-as-a-judge(offline)
-- user feedback
+1. offline
 
+In out case: 
+
+- cosign similarity
+    
+    - cosign_similarity (answer_original(correct one), answer_llm) -> to be discussed more
+
+- llm as a judge 
+    
+    - llm_as_a_judge((answer_original, answer_llm) )
+
+
+
+2. online
+
+In our case:
+
+- `A/B tests`, `experiments`
+- `user feedback`
+
+    
+#### Monitoring
+
+We check:
+
+- overall health of the system.
+- how good the answer is.
