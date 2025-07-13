@@ -415,6 +415,7 @@ ruamel-yaml-conda @ file:///opt/concourse/worker/volumes/live/e81cf0fe-611a-498e
 ruamel.yaml @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_7de1zqcaou/croot/ruamel.yaml_1666304553877/work
 ruamel.yaml.clib @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_c7s0zxy4t2/croot/ruamel.yaml.clib_1666302244557/work
 s3transfer @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_07692347-3b2f-44eb-9a12-5e0d23d67c1b9oqlb6o4/croots/recipe/s3transfer_1654524216219/work
+safetensors==0.5.3
 scikit-image @ file:///opt/concourse/worker/volumes/live/584d0455-dcb7-4cf1-5977-c077944180ee/volume/scikit-image_1648214186784/work
 scikit-learn==1.6.1
 scipy==1.13.0
@@ -422,6 +423,7 @@ Scrapy @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_76a
 seaborn @ file:///tmp/build/80754af9/seaborn_1629307859561/work
 semver==3.0.4
 Send2Trash==1.8.3
+sentence-transformers==5.0.0
 service-identity @ file:///Users/ktietz/demo/mc3/conda-bld/service_identity_1629460757137/work
 setproctitle==1.3.6
 shellingham==1.5.4
@@ -480,9 +482,11 @@ toml @ file:///tmp/build/80754af9/toml_1616166611790/work
 tomli==2.2.1
 tomlkit==0.13.3
 toolz @ file:///tmp/build/80754af9/toolz_1636545406491/work
+torch==2.2.2
 tornado==6.5.1
 tqdm==4.67.1
 traitlets==5.14.3
+transformers==4.53.2
 tweepy==4.12.1
 Twisted @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_daykstm3mh/croots/recipe/twisted_1659592770155/work
 typer==0.16.0
