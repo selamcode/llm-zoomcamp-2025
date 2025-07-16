@@ -259,6 +259,7 @@ mccabe @ file:///opt/conda/conda-bld/mccabe_1644221741721/work
 mdit-py-plugins==0.4.1
 mdurl==0.1.2
 methodtools==0.4.7
+minsearch==0.0.4
 mistune==3.1.3
 mkl-fft==1.3.1
 mkl-random @ file:///opt/concourse/worker/volumes/live/0cda23d8-7460-44b2-7e5d-3c76a8a0ca7e/volume/mkl_random_1626186083266/work
