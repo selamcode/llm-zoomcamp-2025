@@ -7,6 +7,8 @@
 2 evaluation metrics -> way of computing a particular number for a certain retrival method
     - example, common ranking evaluation  metrics ` Precision at k`, `Recall`,`hit rate`
 
+See offline-and-online-evaluation for more.
+
 
 
 
