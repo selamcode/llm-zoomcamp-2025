@@ -389,7 +389,7 @@ PyWavelets @ file:///opt/concourse/worker/volumes/live/6f70ac9d-9e9e-4250-6d7d-2
 PyYAML==6.0.2
 pyzmq==26.4.0
 QDarkStyle @ file:///tmp/build/80754af9/qdarkstyle_1617386714626/work
-qdrant-client==1.14.2
+qdrant-client==1.15.0
 qstylizer @ file:///tmp/build/80754af9/qstylizer_1617713584600/work/dist/qstylizer-0.1.10-py2.py3-none-any.whl
 QtAwesome @ file:///tmp/build/80754af9/qtawesome_1637160816833/work
 qtconsole @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_552cqm7spz/croots/recipe/qtconsole_1662018258355/work
