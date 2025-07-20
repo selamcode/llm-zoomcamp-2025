@@ -411,6 +411,7 @@ rich==14.0.0
 rich-argparse==1.7.1
 rich-toolkit==0.14.7
 rope @ file:///opt/conda/conda-bld/rope_1643788605236/work
+rouge==1.0.1
 rpds-py==0.25.1
 Rtree @ file:///opt/concourse/worker/volumes/live/18283f9b-719e-45b1-7f3a-937f49358be4/volume/rtree_1618420836397/work
 ruamel-yaml-conda @ file:///opt/concourse/worker/volumes/live/e81cf0fe-611a-498e-6e69-a7320057c1ac/volume/ruamel_yaml_1616016689696/work
